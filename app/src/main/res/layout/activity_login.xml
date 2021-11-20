@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="400dp"
         android:ems="10"
-        android:hint="input G-mail address"
+        android:hint="input E-mail address"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/passwordInput"
@@ -28,7 +28,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginBottom="70dp"
         android:background="#2E5A9F"
-        android:text="Google Login"
+        android:text="Login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -62,5 +62,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@color/black" />
+
+    <Button
+        android:id="@+id/googleLoginBtn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="16dp"
+        android:text="Google Login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
