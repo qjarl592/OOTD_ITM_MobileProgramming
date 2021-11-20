@@ -8,43 +8,59 @@
 
     <EditText
         android:id="@+id/emailInput"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="316dp"
-        android:layout_marginBottom="33dp"
+        android:layout_marginTop="400dp"
         android:ems="10"
-        android:hint="email"
+        android:hint="input G-mail address"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/passwordInput"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/passwordInput"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:layout_marginBottom="293dp"
+        android:layout_marginBottom="70dp"
+        android:background="#2E5A9F"
+        android:text="Google Login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordInput"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/passwordInput"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="294dp"
         android:ems="10"
-        android:hint="password"
-        android:inputType="textPersonName"
+        android:hint="input password"
+        android:inputType="textPassword"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailInput" />
 
-    <Button
-        android:id="@+id/loginBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
-        android:layout_marginBottom="195dp"
-        android:text="Google"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="166dp"
+        android:layout_height="172dp"
+        android:layout_marginTop="149dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/emailInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordInput" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@color/black" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
