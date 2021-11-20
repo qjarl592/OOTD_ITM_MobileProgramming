@@ -29,17 +29,17 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val vinding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(vinding.root)
+        val binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         auth = FirebaseAuth.getInstance()
-        vinding.imageView.setImageResource(R.drawable.logo)
+        binding.imageView.setImageResource(R.drawable.logo)
 
-        vinding.loginBtn.setOnClickListener{
-            val email = vinding.emailInput.text.toString()
-            val password = vinding.passwordInput.text.toString()
+        binding.loginBtn.setOnClickListener{
+            val email = binding.emailInput.text.toString()
+            val password = binding.passwordInput.text.toString()
             loginAndRegister(email, password)
         }
-        vinding.googleLoginBtn.setOnClickListener{
+        binding.googleLoginBtn.setOnClickListener{
             googleLogin()
         }
 
