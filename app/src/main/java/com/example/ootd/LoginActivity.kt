@@ -96,9 +96,6 @@ class LoginActivity : AppCompatActivity() {
                 if(task.isSuccessful){
 //                    회원가입 성공시
                     goMain(task.result?.user)
-                }else if(!task.exception?.message.isNullOrEmpty()){
-//                    회원가입 실패시 에러메세지 출력
-                    Toast.makeText(this,task.exception?.message, Toast.LENGTH_LONG).show()
                 }else{
 //                    로그인
                     login(email, password)
@@ -106,7 +103,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
     fun login(email:String, password:String){
-        auth?.createUserWithEmailAndPassword(email, password)
+        auth?.signInWithEmailAndPassword(email, password)
             ?.addOnCompleteListener{
                     task ->
                 if(task.isSuccessful){
