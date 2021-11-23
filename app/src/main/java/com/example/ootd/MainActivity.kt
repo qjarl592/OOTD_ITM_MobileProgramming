@@ -1,32 +1,19 @@
 package com.example.ootd
 
-import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.content.pm.PackageManager.PERMISSION_GRANTED
-import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.ootd.databinding.ActivityMainBinding
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.FirebaseAuthSettings
 import com.google.firebase.storage.FirebaseStorage
-import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.jar.Manifest
-import kotlin.reflect.typeOf
 
 class MainActivity : AppCompatActivity() {
     var PICK_IMAGE_FROK_ALBUM = 0
@@ -82,17 +69,11 @@ class MainActivity : AppCompatActivity() {
     }
     fun upload(photoUri: Uri){
         binding.imageView3.setImageURI(photoUri)
-//        val bitmap: Bitmap = MediaStore.Images.Media.getBitmap(contentResolver,photoUri)
-//        val baos = ByteArrayOutputStream()
-//        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
-//        val photodata = baos.toByteArray()
-
         val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
         val imageFileName = "IMAGE_" + timestamp + "_.png"
 
         val storageRef = storage?.reference?.child("images")?.child(imageFileName)
         var uploadTask = storageRef?.putFile(photoUri!!)
-        //var uploadTask = storageRef?.putBytes(photodata)
         uploadTask?.addOnFailureListener{ e->
             Log.d("log","fail sibal ${e.message}")
         }
