@@ -46,6 +46,7 @@ class LoginActivity : AppCompatActivity() {
         
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
 //          구글 API 키 받아오기 1058798317703-hkt5or47rorvsuc7ktndl16ei42vdgve.apps.googleusercontent.com
+
             .requestIdToken(getString(R.string.default_web_client_id))
 //          이메일 받아오기
             .requestEmail()
