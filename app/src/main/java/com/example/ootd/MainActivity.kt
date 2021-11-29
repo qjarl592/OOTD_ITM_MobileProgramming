@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
     var storage : FirebaseStorage? = null
     var auth: FirebaseAuth? = null
     var firestore: FirebaseFirestore? = null
-  //  lateinit var OOTD_Adapter: OOTDAdapter
     var outfitSDTOList: ArrayList<outfitsDTO> = arrayListOf()
     lateinit var binding: ActivityMainBinding
 
@@ -44,9 +43,10 @@ class MainActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
         firestore?.collection("images")?.orderBy("timestamp")?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+            outfitSDTOList.clear()
             for(snapshot in querySnapshot!!.documents){
                 val item = snapshot.data
-                val newOutfitDTO = outfitsDTO(item?.get("imageURI").toString(), item?.get("uid").toString(), item?.get("userId").toString(), item?.get("timestamp").toString())
+                val newOutfitDTO = outfitsDTO(item?.get("imageURI").toString(), item?.get("uid").toString(), item?.get("userId").toString(), item?.get("timestamp").toString().toLong())
                 Log.d("log","item = ${newOutfitDTO}")
                 outfitSDTOList.add(newOutfitDTO)
             }
@@ -121,42 +121,14 @@ class MainActivity : AppCompatActivity() {
                         it.toString(),
                         auth?.currentUser?.uid,
                         auth?.currentUser?.email,
-                        System.currentTimeMillis().toString()
-                        )
+                        System.currentTimeMillis()
+                    )
                     Log.d("log","${outfitsDTO}")
                     firestore?.collection("images")?.document()?.set(outfitsDTO)?.addOnFailureListener { err->
                         Log.d("log","${err}")
                     }
                 }
             }
-    }
-    //Adapter for recycler view
-    class OOTDAdapter(val myList: MutableList<outfitsDTO>): RecyclerView.Adapter<OOTDAdapter.ViewHolder>() {
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-            val binding = ItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-            return ViewHolder(binding)
-        }
-
-        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            val lotto_number = myList.get(position)
-            holder.bind(lotto_number)
-
-        }
-
-        override fun getItemCount(): Int {
-            return myList.size
-        }
-
-        class ViewHolder(val binding: ItemViewBinding): RecyclerView.ViewHolder(binding.root){
-            fun bind(OOTD:outfitsDTO) {
-                //show lotto numbers
-                //Glide.with(binding.outfitImg.context).load(OOTD.imageURI).into(binding.outfitImg)
-                binding.outfitImg.setImageResource(R.drawable.logo)
-                Log.d("log","userId = ${OOTD.userId}, timesampt = ${OOTD.timestamp}")
-                binding.userId.text = OOTD.userId
-                binding.timeStamp.text = " | "+OOTD.timestamp
-            }
-        }
     }
 }
 
