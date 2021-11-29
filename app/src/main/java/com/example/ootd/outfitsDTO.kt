@@ -4,7 +4,7 @@ data class outfitsDTO(
     val imageURI: String?,
     val uid: String?,
     val userId: String?,
-    val timestamp: String?
+    val timestamp: Long?
 )
 
 

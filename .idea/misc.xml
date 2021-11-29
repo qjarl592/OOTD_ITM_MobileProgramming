@@ -4,13 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/jinw0/AndroidStudioProjects/OOTD/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14583333333333334" />
+        <entry key="..\:/Users/jinw0/AndroidStudioProjects/OOTD/app/src/main/res/drawable/item_component.xml" value="0.14375" />
         <entry key="..\:/Users/jinw0/AndroidStudioProjects/OOTD/app/src/main/res/layout/activity_login.xml" value="0.2" />
-        <entry key="..\:/Users/jinw0/AndroidStudioProjects/OOTD/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/jinw0/AndroidStudioProjects/OOTD/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/jinw0/AndroidStudioProjects/OOTD/app/src/main/res/layout/activity_select_photo.xml" value="0.2" />
+        <entry key="..\:/Users/jinw0/AndroidStudioProjects/OOTD/app/src/main/res/layout/item_view.xml" value="0.2" />
         <entry key="..\:/Users/jinw0/AndroidStudioProjects/OOTD/app/src/main/res/menu/mainmenu.xml" value="0.264" />
         <entry key="..\:/Users/qjarl/AndroidStudioProjects/OOTD/app/src/main/res/layout/activity_login.xml" value="0.24791666666666667" />
         <entry key="..\:/Users/qjarl/AndroidStudioProjects/OOTD/app/src/main/res/layout/activity_main.xml" value="0.24791666666666667" />
-        <entry key="..\:/Users/qjarl/AndroidStudioProjects/OOTD/app/src/main/res/layout/item_view.xml" value="0.2" />
       </map>
     </option>
   </component>
