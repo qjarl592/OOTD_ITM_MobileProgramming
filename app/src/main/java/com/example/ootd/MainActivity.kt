@@ -140,6 +140,7 @@ class MainActivity : AppCompatActivity() {
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val lotto_number = myList.get(position)
             holder.bind(lotto_number)
+
         }
 
         override fun getItemCount(): Int {
