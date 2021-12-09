@@ -32,17 +32,19 @@ class LoginActivity : AppCompatActivity() {
         val binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = FirebaseAuth.getInstance()
-        binding.imageView.setImageResource(R.drawable.logo)
 
         binding.loginBtn.setOnClickListener{
             val email = binding.emailInput.text.toString()
             val password = binding.passwordInput.text.toString()
-            loginAndRegister(email, password)
+            login(email, password)
         }
         binding.googleLoginBtn.setOnClickListener{
             googleLogin()
         }
-
+        binding.registerBtn.setOnClickListener{
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
         
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
 //          구글 API 키 받아오기 1058798317703-hkt5or47rorvsuc7ktndl16ei42vdgve.apps.googleusercontent.com
@@ -90,19 +92,7 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
-    fun loginAndRegister(email:String, password:String){
-        auth?.createUserWithEmailAndPassword(email, password)
-            ?.addOnCompleteListener{
-            task ->
-                if(task.isSuccessful){
-//                    회원가입 성공시
-                    goMain(task.result?.user)
-                }else{
-//                    로그인
-                    login(email, password)
-                }
-        }
-    }
+
     fun login(email:String, password:String){
         auth?.signInWithEmailAndPassword(email, password)
             ?.addOnCompleteListener{
@@ -122,4 +112,11 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//
+//        val new_email = data?.getStringExtra("userEmail")
+//        Log.d("tag","${new_email}")
+//    }
 }
