@@ -40,7 +40,13 @@ class OOTDAdapter(val myList: MutableList<Pair<String, outfitsDTO>>): RecyclerVi
         private val storage: FirebaseStorage? = FirebaseStorage.getInstance()
 
         fun bind(OOTD:Pair<String, outfitsDTO>) {
-            if(auth?.currentUser?.email != OOTD.second.userId) binding.imageView2.visibility = View.INVISIBLE
+            if(auth?.currentUser?.email != OOTD.second.userId) {
+                Log.d("log", "cur ID : ${auth?.currentUser?.email}, uploader : ${OOTD.second.userId}")
+                binding.imageView2.visibility = View.INVISIBLE
+            }
+            else{
+                binding.imageView2.visibility = View.VISIBLE
+            }
             binding.imageView2.setOnClickListener {
                 Log.d("log", "???")
                 val builder = AlertDialog.Builder(context)

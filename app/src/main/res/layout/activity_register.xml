@@ -67,7 +67,7 @@
         android:layout_marginTop="60dp"
         android:background="@drawable/edit_form"
         android:ems="10"
-        android:hint="   Input password"
+        android:hint="Input password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/registerEmail"
         app:layout_constraintTop_toBottomOf="@+id/registerEmail" />
@@ -92,7 +92,7 @@
         android:layout_marginEnd="-100dp"
         android:background="@drawable/edit_form"
         android:ems="10"
-        android:hint="   Input email"
+        android:hint="Input email"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
