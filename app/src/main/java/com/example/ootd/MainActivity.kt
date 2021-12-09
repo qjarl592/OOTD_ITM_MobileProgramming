@@ -130,6 +130,7 @@ class MainActivity : AppCompatActivity() {
                 Log.d("log","item = ${newOutfitDTO}")
                 outfitSDTOList.add(Pair(docId, newOutfitDTO))
             }
+            outfitSDTOList.sortBy { it.second.timestamp }
             outfitSDTOList.reverse()
             OOTD_Adapter.notifyDataSetChanged()
         }
@@ -176,6 +177,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
+        OOTD_Adapter.notifyDataSetChanged()
     }
 }
 
