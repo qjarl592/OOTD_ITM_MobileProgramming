@@ -17,15 +17,12 @@ class RegisterActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
+        //When register button clicked, process login with the data user input in the edit text box.
         binding.registerEndBtn.setOnClickListener{
             val new_email = binding.registerEmail.text.toString()
             val new_password = binding.registerPassword.text.toString()
-            Log.d("log", "id : ${new_email}, pw : ${new_password}")
 
             Register(new_email,new_password)
-
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
         }
     }
 
@@ -34,7 +31,9 @@ class RegisterActivity : AppCompatActivity() {
         auth?.createUserWithEmailAndPassword(email, password)?.addOnCompleteListener{
                 task ->
             if(task.isSuccessful){
-                Log.d("log", "성공")
+                //If the register proceed successfully, go to login activity.
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
             }else{
                 Log.d("log", "실패")
             }
