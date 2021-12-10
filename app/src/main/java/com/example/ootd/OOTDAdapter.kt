@@ -14,7 +14,6 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -40,29 +39,29 @@ class OOTDAdapter(val myList: MutableList<Pair<String, outfitsDTO>>): RecyclerVi
         private val storage: FirebaseStorage? = FirebaseStorage.getInstance()
 
         fun bind(OOTD:Pair<String, outfitsDTO>) {
+            //Users only see "X" button of posts that they upload.
             if(auth?.currentUser?.email != OOTD.second.userId) {
-                Log.d("log", "cur ID : ${auth?.currentUser?.email}, uploader : ${OOTD.second.userId}")
                 binding.imageView2.visibility = View.INVISIBLE
             }
             else{
                 binding.imageView2.visibility = View.VISIBLE
             }
             binding.imageView2.setOnClickListener {
-                Log.d("log", "???")
+                //Remind users whether they really want to delete the post.
                 val builder = AlertDialog.Builder(context)
                 builder.setTitle("Inform")
-                builder.setMessage("Do you want to delete this post")
+                builder.setMessage("Do you want to delete this post?")
                 builder.setNegativeButton("No"){dialogInterface:DialogInterface, i:Int ->
                     Log.d("log", "no!!")
                 }
+
+                //If click "YES" in the message,proceed delete process.
                 builder.setPositiveButton("YES"){dialogInterface:DialogInterface, i:Int ->
-                    Log.d("log", "yes!!")
                     val docId = OOTD.first
                     val imagePath = OOTD.second.imageURI
-                    firestore?.collection("images")?.document(docId.toString())?.delete()?.addOnSuccessListener {
+                    firestore?.collection("images")?.document(docId)?.delete()?.addOnSuccessListener {
                         val destRef = storage?.getReferenceFromUrl(imagePath.toString())
                         destRef?.delete()?.addOnSuccessListener {
-                            Log.d("log", "성공!!!")
                             Toast.makeText(context, "deleting success", Toast.LENGTH_LONG).show()
                         }?.addOnFailureListener { e->
                             Log.d("log", "error : ${e}")
@@ -72,6 +71,9 @@ class OOTDAdapter(val myList: MutableList<Pair<String, outfitsDTO>>): RecyclerVi
                 builder.create()
                 builder.show()
             }
+
+            //Loading image file by using image URL stored in firestore and Glide library
+            //Set timestamp data as our format.
             Glide.with(binding.outfitImg.context).load(OOTD.second.imageURI).into(binding.outfitImg)
             val date = SimpleDateFormat("yyyy-MM-dd kk:mm:ss E", Locale("ko", "KR")).format(OOTD.second.timestamp?.let { Date(it) })
             binding.userId.text = OOTD.second.userId
